@@ -1,0 +1,150 @@
+openapi: 3.0.0
+info:
+  title: Customer API
+  description: API for managing customers
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /cliente/{id}:
+    get:
+      summary: Get customer by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDTO'
+        '404':
+          description: Customer not found
+
+    post:
+      summary: Save a new customer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerInputDTO'
+      responses:
+        '201':
+          description: Customer created successfully
+        '400':
+          description: Invalid input
+
+  /cliente/name/{customerName}:
+    get:
+      summary: Get customer by name
+      parameters:
+        - name: customerName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDTO'
+        '404':
+          description: Customer not found
+
+  /cliente/documents/{id}:
+    get:
+      summary: Get customer documents by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerDocumentDTO'
+        '404':
+          description: Customer not found
+
+  /cliente/contacts/{id}:
+    get:
+      summary: Get customer contacts by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerContactDTO'
+        '404':
+          description: Customer not found
+components:
+  schemas:
+    CustomerDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+
+    CustomerDocumentDTO:
+      type: object
+      properties:
+        documentNumber:
+          type: string
+        documentType:
+          type: string
+
+    CustomerContactDTO:
+      type: object
+      properties:
+        contactName:
+          type: string
+        contactEmail:
+          type: string
+
+    CustomerInputDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerDocumentDTO'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerContactDTO'
