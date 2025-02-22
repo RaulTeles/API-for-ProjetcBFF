@@ -1,4 +1,4 @@
 package com.avanade.demo.application.dto;
 
-public record CustomerContactDTO(String email, String phone) {
+public record CustomerContactDTO(String contactCustomer, String contactType) {
 }

@@ -2,8 +2,6 @@ package com.avanade.demo.domain.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -33,6 +31,7 @@ public class Customer {
     public Segment getSegment() {
         return segment;
     }
+
     public void setSegment(Segment segment) {
         this.segment = segment;
     }

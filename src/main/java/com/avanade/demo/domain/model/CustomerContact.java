@@ -21,5 +21,20 @@ public class CustomerContact {
     @Column(nullable = false)
     private String contactValue;
 
-    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public CustomerContactType getCustomerContactType() {
+        return customerContactType;
+    }
+
+    public String getContactValue() {
+        return contactValue;
+    }
+
 }

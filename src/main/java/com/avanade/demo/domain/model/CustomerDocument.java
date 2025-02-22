@@ -28,20 +28,11 @@ public class CustomerDocument {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public DocumentType getDocumentType() {
         return documentType;
-    }
-
-    public void setDocumentType(DocumentType documentType) {
-        this.documentType = documentType;
     }
 
     public String getDocument() {
         return document;
     }
-
 }
