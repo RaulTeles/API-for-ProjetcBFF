@@ -38,8 +38,8 @@ Refer to the `openapi.yaml` file for detailed API specifications.
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/jeffultra/customer-management-api.git
-   cd customer-management-api
+   git clone https://github.com/RaulTeles/API-for-ProjetcBFF.git
+   cd API-for-ProjetcBFF
    
 ## Running the Application
 
