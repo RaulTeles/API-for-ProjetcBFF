@@ -7,4 +7,7 @@ public interface GetCustomerUseCase {
     CustomerDTO getCustomerById(Long id);
 
     CustomerDTO getCustomerByName(String username);
+
+    CustomerDTO getCustomerByDocumentNumber(String documentNumber);
+
 }

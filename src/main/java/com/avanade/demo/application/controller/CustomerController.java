@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,5 +30,12 @@ public class CustomerController {
         CustomerDTO customer = customerService.getCustomerByName(customerName);
         logger.info("Found customer with name: " + customerName);
         return customer;
+    }
+
+    @GetMapping("/cliente/documentNumber")
+    public CustomerDTO getCustomerByDocumentNumber(@RequestParam String number){
+        CustomerDTO document = customerService.getCustomerByDocumentNumber(number);
+        logger.info("Found customer with name: " + number);
+        return document;
     }
 }

@@ -8,5 +8,7 @@ public interface CustomerOutput {
 
     CustomerDTO getCustomerByName(String name);
 
+    CustomerDTO getCustomerByDocumentNumber(String documentNumber);
+
 
 }

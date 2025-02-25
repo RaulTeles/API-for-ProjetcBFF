@@ -14,7 +14,6 @@ import com.avanade.demo.infrastructure.adapter.output.repository.CustomerReposit
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -39,7 +38,7 @@ public class CustomerPersistenceAdapter implements CustomerOutput {
 
         List<CustomerContact> contacts = customerContactRepository.findByCustomerId(customerId);
         List<CustomerContactDTO> contactDTOs = contacts.stream().map(contact ->
-                new CustomerContactDTO(contact.getContactValue(),contact.getCustomerContactType().getName())).toList();
+                new CustomerContactDTO(contact.getContactValue(), contact.getCustomerContactType().getName())).toList();
 
         return new CustomerDTO(
                 customer.getId(),
@@ -61,6 +60,16 @@ public class CustomerPersistenceAdapter implements CustomerOutput {
     public CustomerDTO getCustomerByName(String name) {
         final Customer cust = customerRepository.findByName(name).orElseThrow(() ->
                 new EntityNotFoundException("Cliente não encontrado"));
+        return mapCustomerToDTO(cust);
+    }
+
+    @Override
+    public CustomerDTO getCustomerByDocumentNumber(String documentNumber) {
+        CustomerDocument document = customerDocumentRepository.findByDocument(documentNumber)
+                .orElseThrow(() -> new EntityNotFoundException("Documento não encontrado"));
+
+        Customer cust = document.getCustomer();
+
         return mapCustomerToDTO(cust);
     }
 }

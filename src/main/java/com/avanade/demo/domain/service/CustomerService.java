@@ -21,4 +21,9 @@ public class CustomerService implements GetCustomerUseCase {
     public CustomerDTO getCustomerByName(String customerName) {
         return customerOutput.getCustomerByName(customerName);
     }
+
+    @Override
+    public CustomerDTO getCustomerByDocumentNumber(String documentNumber){
+        return customerOutput.getCustomerByDocumentNumber(documentNumber);
+    }
 }
