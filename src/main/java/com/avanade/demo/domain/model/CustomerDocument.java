@@ -35,4 +35,16 @@ public class CustomerDocument {
     public String getDocument() {
         return document;
     }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setDocumentType(DocumentType documentType) {
+        this.documentType = documentType;
+    }
 }

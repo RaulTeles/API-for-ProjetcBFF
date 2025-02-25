@@ -37,4 +37,15 @@ public class CustomerContact {
         return contactValue;
     }
 
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setCustomerContactType(CustomerContactType customerContactType) {
+        this.customerContactType = customerContactType;
+    }
+
+    public void setContactValue(String contactValue) {
+        this.contactValue = contactValue;
+    }
 }
