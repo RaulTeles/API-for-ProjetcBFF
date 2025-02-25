@@ -26,11 +26,11 @@ The project is organized following the Hexagonal Architecture (Ports and Adapter
 
 The API provides the following endpoints:
 
-- `GET /cliente/{id}`: Get customer by ID.
-- `GET /cliente/name/{customerName}`: Get customer by name.
-- `GET /cliente/documents/{id}`: Get customer documents by ID.
-- `GET /cliente/contacts/{id}`: Get customer contacts by ID.
-- `POST /cliente/{id}`: Save a new customer.
+- `GET /bff/cliente/{id}`: Get customer by ID.
+- `GET /bff/cliente/name/{customerName}`: Get customer by name.
+- `GET /bff/cliente/documents/{id}`: Get customer documents by ID.
+- `GET /bff/cliente/contacts/{id}`: Get customer contacts by ID.
+- `POST /bff/cliente/{id}`: Save a new customer.
 
 Refer to the `openapi.yaml` file for detailed API specifications.
 
