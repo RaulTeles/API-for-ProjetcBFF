@@ -5,11 +5,13 @@ import com.avanade.demo.application.dto.CustomerContactDTO;
 import com.avanade.demo.application.dto.CustomerDTO;
 import com.avanade.demo.application.dto.CustomerDocumentDTO;
 import com.avanade.demo.application.port.output.CustomerOutput;
+import com.avanade.demo.domain.exception.CpfAlreadyExistsException;
 import com.avanade.demo.domain.exception.EntityNotFoundException;
 import com.avanade.demo.domain.exception.ValidationException;
 import com.avanade.demo.domain.model.*;
 import com.avanade.demo.infrastructure.adapter.output.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -84,10 +86,17 @@ public class CustomerPersistenceAdapter implements CustomerOutput {
 
     @Override
     public CustomerDTO createCustomer(CreateCustomerDTO createCustomerDTO) {
-        // Valida se o CPF foi informado
-        if (createCustomerDTO.documents().isEmpty()) {
-            throw new ValidationException("O CPF é obrigatório.");
-        }
+        String cpf = createCustomerDTO.documents().stream()
+                .filter(doc -> "CPF".equals(doc.documentType()))
+                .map(CustomerDocumentDTO::documentNumber)
+                .findFirst()
+                .orElseThrow(() -> new ValidationException("O CPF é obrigatório."));
+
+
+            if (customerDocumentRepository.existsByDocument(cpf)) {
+                throw new CpfAlreadyExistsException(HttpStatus.CONFLICT, "CPF já cadastrado.");
+            }
+
 
         Segment segment = segmentRepository.findById(createCustomerDTO.segmentId())
                 .orElseThrow(() -> new ValidationException("Segmento não encontrado."));

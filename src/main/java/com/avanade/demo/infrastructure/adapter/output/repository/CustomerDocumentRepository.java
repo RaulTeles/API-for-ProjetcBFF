@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface CustomerDocumentRepository extends JpaRepository<CustomerDocument, Long> {
     List<CustomerDocument> findByCustomerId(Long customerId);
     Optional<CustomerDocument> findByDocument(String documentNumber);
+    boolean existsByDocument(String document);
+
 }
